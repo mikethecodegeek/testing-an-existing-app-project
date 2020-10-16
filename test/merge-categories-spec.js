@@ -4,12 +4,14 @@ const { mergeCategories } = require('../merge-categories');
 describe("mergeCategories()", () => {
   context("Using <li> tags", () => {
     const template = `
-      <div>
-        <ul>
-          <!-- Content here -->
-        </ul>
-      </div>
-    `;
+    <div>
+      <ul>
+        {{#each categories}}
+          <li>{{ this }}</li>
+        {{/each}}
+      </ul>
+    </div>
+  `;
 
     it("should return no <li>s for no categories", () => {
       let result = mergeCategories(template,[],'li');
@@ -51,12 +53,14 @@ describe("mergeCategories()", () => {
 
   context("using <option> tags", () => {
     const template = `
-      <div>
-        <select>
-          <!-- Content here -->
-        </select>
-      </div>
-    `;
+    <div>
+      <select>
+        {{#each categories}}
+          <option>{{ this }}</option>
+        {{/each}}
+      </select>
+    </div>
+  `;
 
     it("should return no <option>s for no categories", () => {
       let result = mergeCategories(template,[],'option');
